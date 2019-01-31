@@ -13,10 +13,16 @@ defmodule ShowcaseWeb.Router do
     plug :accepts, ["json"]
   end
 
+
   scope "/", ShowcaseWeb do
     pipe_through :browser
 
-    get "/:message", PageController, :index
+    get "/home/:message", PageController, :index
+  end
+
+  scope "/jobs", ShowcaseWeb do
+
+    forward "/", BackgroundJob.Plug, name: "Bckg job"
   end
 
   # Other scopes may use custom stacks.
