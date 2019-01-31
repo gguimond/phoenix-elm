@@ -1,3 +1,16 @@
+defmodule ShowcaseWeb.Plugs.Locale do
+  import Plug.Conn
+
+  @locales ["en", "fr", "de"]
+
+  def init(default), do: default
+
+  def call(%Plug.Conn{params: %{"locale" => loc}} = conn, _default) when loc in @locales do
+    assign(conn, :locale, loc)
+  end
+  def call(conn, default), do: assign(conn, :locale, default)
+end
+
 defmodule ShowcaseWeb.Router do
   use ShowcaseWeb, :router
 
@@ -7,6 +20,7 @@ defmodule ShowcaseWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug ShowcaseWeb.Plugs.Locale, "en"
   end
 
   pipeline :api do
