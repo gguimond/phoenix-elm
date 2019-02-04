@@ -7,7 +7,13 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :showcase, ShowcaseWeb.Endpoint,
-  http: [port: 4000],
+  https: [
+    port: 4001,
+    cipher_suite: :strong,
+    keyfile: "priv/cert/selfsigned_key.pem",
+    certfile: "priv/cert/selfsigned.pem"
+  ],
+  force_ssl: [],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
