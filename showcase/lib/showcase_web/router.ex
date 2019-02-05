@@ -15,7 +15,7 @@ defmodule ShowcaseWeb.Router do
   use ShowcaseWeb, :router
 
   pipeline :browser do
-    plug :accepts, ["html"]
+    plug :accepts, ["html", "text"]
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
@@ -31,7 +31,12 @@ defmodule ShowcaseWeb.Router do
   scope "/", ShowcaseWeb do
     pipe_through :browser
 
+    get "/noheader/home/:message", PageController, :index_no_header
     get "/home/:message", PageController, :index
+    get "/home/:message/json", PageController, :json_index
+    get "/none", PageController, :none
+    get "/error", PageController, :error
+    get "/redirect", PageController, :redirect_test
   end
 
   scope "/jobs", ShowcaseWeb do
