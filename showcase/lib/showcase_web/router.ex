@@ -37,6 +37,7 @@ defmodule ShowcaseWeb.Router do
     get "/none", PageController, :none
     get "/error", PageController, :error
     get "/redirect", PageController, :redirect_test
+    get "/json/template", PageController, :json_template
   end
 
   scope "/jobs", ShowcaseWeb do

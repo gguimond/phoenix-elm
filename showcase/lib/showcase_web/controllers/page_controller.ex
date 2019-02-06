@@ -13,7 +13,7 @@ defmodule ShowcaseWeb.PageController do
     |> render("index.html", message: message)
   end
 
-  def index(conn, %{"message" => message} = params) do
+  def index(conn, %{"message" => message}) do
     conn
     |> put_flash(:info, "Welcome to Phoenix, from flash info!")
     |> put_flash(:error, "Let's pretend we have an error.")
@@ -31,8 +31,13 @@ defmodule ShowcaseWeb.PageController do
     redirect(conn, to: Routes.page_path(conn, :index, "redirect"))
   end
 
-  def json_index(conn, %{"message" => message} = params) do
+  def json_index(conn, %{"message" => message}) do
     json(conn, %{message: message})
+  end
+
+  def json_template(conn, _params) do
+    pages = [%{title: "foo"}, %{title: "bar"}]
+    render(conn, "index.json", pages: pages)
   end
 
   defp assign_welcome_hi(conn, msg) do
