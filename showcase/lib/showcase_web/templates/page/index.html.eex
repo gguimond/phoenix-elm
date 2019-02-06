@@ -1,2 +1,12 @@
 <h2>Message : <%= @message %>!</h2>
 <p><%= @hi %></p>
+
+<div class="phx-hero">
+  <p><%= handler_info(@conn) %></p>
+
+  <h3>Keys for the conn Struct</h3>
+
+  <%= for key <- connection_keys(@conn) do %>
+    <%= render(ShowcaseWeb.SharedView, "key.html", key: key) %>
+  <% end %>
+</div>
