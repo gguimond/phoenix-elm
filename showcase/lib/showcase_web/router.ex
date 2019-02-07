@@ -11,10 +11,12 @@ defmodule ShowcaseWeb.Plugs.Locale do
   def call(conn, default), do: assign(conn, :locale, default)
 end
 
+
 defmodule ShowcaseWeb.Router do
   use ShowcaseWeb, :router
 
   pipeline :browser do
+    plug :put_user_token
     plug :accepts, ["html", "text"]
     plug :fetch_session
     plug :fetch_flash
@@ -49,4 +51,10 @@ defmodule ShowcaseWeb.Router do
   # scope "/api", ShowcaseWeb do
   #   pipe_through :api
   # end
+
+  
+  defp put_user_token(conn, _) do
+    token = Phoenix.Token.sign(conn, "user socket", 1)
+    assign(conn, :user_token, token)
+  end
 end

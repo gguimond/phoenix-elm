@@ -1,6 +1,9 @@
 <h2>Message : <%= @message %>!</h2>
 <p><%= @hi %></p>
 
+<div id="messages"></div>
+<input id="chat-input" type="text"></input>
+
 <div class="phx-hero">
   <p><%= handler_info(@conn) %></p>
 
