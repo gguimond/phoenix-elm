@@ -1,6 +1,8 @@
 <h2>Message : <%= @message %>!</h2>
 <p><%= @hi %></p>
 
+<div class="presence"></div>
+
 <div id="messages"></div>
 <input id="chat-input" type="text"></input>
 

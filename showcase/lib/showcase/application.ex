@@ -9,7 +9,8 @@ defmodule Showcase.Application do
     # List all child processes to be supervised
     children = [
       # Start the endpoint when the application starts
-      ShowcaseWeb.Endpoint
+      ShowcaseWeb.Endpoint,
+      ShowcaseWeb.Presence
       # Starts a worker by calling: Showcase.Worker.start_link(arg)
       # {Showcase.Worker, arg},
     ]
