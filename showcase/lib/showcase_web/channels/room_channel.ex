@@ -1,6 +1,6 @@
 defmodule ShowcaseWeb.RoomChannel do
   use Phoenix.Channel
-  alias HelloWeb.Presence
+  alias ShowcaseWeb.Presence
 
   def join("room:lobby", _message, socket) do
     send(self(), :after_join)

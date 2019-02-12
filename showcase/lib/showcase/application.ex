@@ -10,9 +10,13 @@ defmodule Showcase.Application do
     children = [
       # Start the endpoint when the application starts
       ShowcaseWeb.Endpoint,
-      ShowcaseWeb.Presence
+      ShowcaseWeb.Presence,
       # Starts a worker by calling: Showcase.Worker.start_link(arg)
       # {Showcase.Worker, arg},
+      %{
+        id: Showcase.Repo,
+        start: {Showcase.Repo, :start_link, []}
+      }
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

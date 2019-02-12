@@ -7,12 +7,21 @@
 # General application configuration
 use Mix.Config
 
+config :showcase,
+  ecto_repos: [Showcase.Repo]
+
 # Configures the endpoint
 config :showcase, ShowcaseWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "X6ifngYm0fsqO3xqpjqWYOLYjgqAGhmefzuUOiSsTgL3qIWhhT/l9Zh7WaDlY9tL",
   render_errors: [view: ShowcaseWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Showcase.PubSub, adapter: Phoenix.PubSub.PG2]
+
+
+config :showcase, Showcase.Repo,
+database: "showcaseweb",
+adapter: Mongo.Ecto,
+hostname: "localhost"
 
 # Configures Elixir's Logger
 config :logger, :console,
