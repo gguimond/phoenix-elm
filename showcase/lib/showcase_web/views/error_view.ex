@@ -17,4 +17,5 @@ defmodule ShowcaseWeb.ErrorView do
   def title do
     "Oh Yeahhh"
   end
+
 end

@@ -14,7 +14,7 @@ config :showcase, ShowcaseWeb.Endpoint,
     certfile: "priv/cert/selfsigned.pem"
   ],
   force_ssl: [],
-  debug_errors: true,
+  debug_errors: false,
   code_reloader: true,
   check_origin: false,
   watchers: [

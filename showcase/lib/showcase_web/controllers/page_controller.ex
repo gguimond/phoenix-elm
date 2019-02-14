@@ -1,6 +1,5 @@
 defmodule ShowcaseWeb.PageController do
   use ShowcaseWeb, :controller
-  import Ecto.Changeset
   import Ecto.Query, only: [from: 2]
 
   plug :assign_welcome_hi, "Hi!" when action in [:index, :index_no_header, :jsonIndex]
@@ -29,7 +28,7 @@ defmodule ShowcaseWeb.PageController do
     end
     regex = Mongo.Ecto.Helpers.regex("guimog@guimog.com", "i")
     query = from u in Showcase.User,
-      where: fragment("email": ^regex),
+      where: fragment(email: ^regex),
       select: u.name
     result = Showcase.Repo.all(query)
     conn
@@ -43,6 +42,10 @@ defmodule ShowcaseWeb.PageController do
       conn
       |> render("index.html")
     end
+  end
+
+  def no_route(conn, _params) do
+    raise ShowcaseWeb.Router.NoRouteError, [{:conn, conn}, {:router, ShowcaseWeb.Router}]
   end
 
   def redirect_test(conn, _params) do

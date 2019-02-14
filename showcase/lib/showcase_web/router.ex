@@ -40,6 +40,7 @@ defmodule ShowcaseWeb.Router do
     get "/error", PageController, :error
     get "/redirect", PageController, :redirect_test
     get "/json/template", PageController, :json_template
+    get "/noroute", PageController, :no_route
   end
 
   scope "/jobs", ShowcaseWeb do
@@ -56,5 +57,23 @@ defmodule ShowcaseWeb.Router do
   defp put_user_token(conn, _) do
     token = Phoenix.Token.sign(conn, "user socket", 1)
     assign(conn, :user_token, token)
+  end
+
+  defmodule NoRouteError do
+    @moduledoc """
+    Exception raised when no route is found.
+    """
+    defexception plug_status: 404, message: "no route found", conn: nil, router: nil
+
+    def exception(opts) do
+      conn   = Keyword.fetch!(opts, :conn)
+      router = Keyword.fetch!(opts, :router)
+      path   = "/" <> Enum.join(conn.path_info, "/")
+
+      ex = %NoRouteError{message: "no route found for #{conn.method} #{path} (#{inspect router})",
+      conn: conn, router: router}
+      IO.inspect ex
+      ex
+    end
   end
 end
