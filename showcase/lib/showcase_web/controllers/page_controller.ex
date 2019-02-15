@@ -2,6 +2,17 @@ defmodule ShowcaseWeb.PageController do
   use ShowcaseWeb, :controller
   import Ecto.Query, only: [from: 2]
 
+  defmodule Client do
+    @callback test() :: String
+  end
+
+  defmodule Client_impl do
+    @behaviour Client
+
+    @impl Client
+    def test(), do: "yep"
+  end
+
   plug :assign_welcome_hi, "Hi!" when action in [:index, :index_no_header, :jsonIndex]
 
   action_fallback ShowcaseWeb.FallbackController
@@ -34,7 +45,7 @@ defmodule ShowcaseWeb.PageController do
     conn
     |> put_flash(:info, "Welcome to Phoenix, from flash info!")
     |> put_flash(:error, "Let's pretend we have an error.")
-    |> render(:index, message: message <> " " <> List.first(result))
+    |> render(:index, message: message <> " " <> List.first(result) <> " " <> Client_impl.test)
   end
 
   def error(conn, _params) do
