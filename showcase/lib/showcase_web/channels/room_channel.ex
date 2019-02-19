@@ -15,6 +15,7 @@ defmodule ShowcaseWeb.RoomChannel do
     {:noreply, socket}
   end
 
+  
   def handle_info(:after_join, socket) do
     push(socket, "presence_state", Presence.list(socket))
     {:ok, _} = Presence.track(socket, socket.assigns.current_user, %{
@@ -22,4 +23,5 @@ defmodule ShowcaseWeb.RoomChannel do
     })
     {:noreply, socket}
   end
+  
 end
