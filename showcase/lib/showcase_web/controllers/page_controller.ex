@@ -28,6 +28,7 @@ defmodule ShowcaseWeb.PageController do
   def index(conn, %{"message" => message}) do
     #valid
     user = Showcase.User.changeset(%Showcase.User{}, %{name: "guimog", email: "guimog@guimog.com"})
+    """
     if user.valid? do
       info = Showcase.Repo.insert!(user)
       Showcase.Repo.delete!(info)
@@ -42,6 +43,8 @@ defmodule ShowcaseWeb.PageController do
       where: fragment(email: ^regex),
       select: u.name
     result = Showcase.Repo.all(query)
+    """
+    result = ["foobar"]
     conn
     |> put_flash(:info, "Welcome to Phoenix, from flash info!")
     |> put_flash(:error, "Let's pretend we have an error.")

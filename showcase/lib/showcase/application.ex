@@ -13,10 +13,10 @@ defmodule Showcase.Application do
       ShowcaseWeb.Presence,
       # Starts a worker by calling: Showcase.Worker.start_link(arg)
       # {Showcase.Worker, arg},
-      %{
-        id: Showcase.Repo,
-        start: {Showcase.Repo, :start_link, []}
-      }
+      #%{
+      #  id: Showcase.Repo,
+      #  start: {Showcase.Repo, :start_link, []}
+      #}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
