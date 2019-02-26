@@ -1,0 +1,21 @@
+FROM bitwalker/alpine-erlang:20.2.2
+
+# Set environment variables
+ENV MIX_ENV=prod
+
+RUN adduser -u 1002 -D -g "Elixir user" elixiruser
+
+RUN chown -R elixiruser:root /opt/app
+RUN chmod g+rwx /opt/app
+
+# Copy tarball release
+ADD _build/prod/rel/showcase/releases/0.1.0/showcase.tar.gz ./
+
+# Set user
+USER 1002
+
+EXPOSE 8000
+
+# Set entrypoint
+ENTRYPOINT ["./bin/showcase"]
+CMD ["foreground"]

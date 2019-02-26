@@ -8,7 +8,7 @@
 // from the params if you are not using authentication.
 import {Socket, Presence} from "phoenix"
 
-let socket = new Socket("/socket", {params: {token: window.userToken}})
+let socket = new Socket("ws://" + location.host.split(":")[0] + ":8000" + "/socket", {params: {token: window.userToken}})
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,

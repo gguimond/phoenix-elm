@@ -10,11 +10,15 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :showcase, ShowcaseWeb.Endpoint,
-  http: [:inet6, port: System.get_env("PORT") || 4000],
-  url: [scheme: "https", host: "showcase-gg.herokuapp.com", port: 443],
-  force_ssl: [rewrite_on: [:x_forwarded_proto]],
+  http: [:inet6, port: {:system, "PORT"} || 4000],
+  url: [host: {:system, "HOST"}, port: {:system, "PORT"}],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE")
+  secret_key_base: "uX84CBa1UhVTJtra6VAHuptBwKuRW4Wu2k6OMzXpnUi1xekJ+jOUlq+7WfySgEww",
+  server: true,
+  root: ".",
+  version: Application.spec(:phoenix_distillery, :vsn),
+  load_from_system_env: true,
+  check_origin: false
 
 # Do not print debug messages in production
 config :logger, level: :info
@@ -63,7 +67,7 @@ config :logger, level: :info
 # Alternatively, you can configure exactly which server to
 # start per endpoint:
 #
-#     config :showcase, ShowcaseWeb.Endpoint, server: true
+#    config :showcase, ShowcaseWeb.Endpoint, server: true
 #
 # Note you can't rely on `System.get_env/1` when using releases.
 # See the releases documentation accordingly.

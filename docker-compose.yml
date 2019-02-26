@@ -1,0 +1,16 @@
+version: "3"
+services:
+  server:
+    image: phoenix-showcase-release
+    container_name: phoenix-showcase-server
+    build:
+      context: .
+      dockerfile: Dockerfile.run
+    environment:
+      - PORT=8000
+      - HOST="192.168.99.100"
+    expose:
+      - "8000"
+    command: foreground
+    ports:
+    - "8000:8000"

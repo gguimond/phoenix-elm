@@ -1,6 +1,6 @@
 defmodule ShowcaseWeb.PageController do
   use ShowcaseWeb, :controller
-  import Ecto.Query, only: [from: 2]
+  #import Ecto.Query, only: [from: 2]
 
   defmodule Client do
     @callback test() :: String
@@ -27,8 +27,8 @@ defmodule ShowcaseWeb.PageController do
 
   def index(conn, %{"message" => message}) do
     #valid
-    user = Showcase.User.changeset(%Showcase.User{}, %{name: "guimog", email: "guimog@guimog.com"})
     """
+    user = Showcase.User.changeset(%Showcase.User{}, %{name: "guimog", email: "guimog@guimog.com"})
     if user.valid? do
       info = Showcase.Repo.insert!(user)
       Showcase.Repo.delete!(info)

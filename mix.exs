@@ -41,6 +41,7 @@ defmodule Showcase.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:phoenix_ecto, "~> 3.0"},
       {:mongodb_ecto, "~> 0.2"},
+      {:distillery, "~> 2.0"}
     ]
   end
 end
